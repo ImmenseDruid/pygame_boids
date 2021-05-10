@@ -75,7 +75,7 @@ class Boid():
 
 
 	def keepOnScreen(self):
-		b = 0
+		b = -10
 		if self.x < -b:
 			self.x = self.screenWidth + b
 
@@ -111,6 +111,7 @@ class Boid():
 		
 		
 		
+	
 
 		numBoidsICanSee = 0
 
