@@ -26,7 +26,7 @@ def add(v1, v2):
 
 
 class Boid():
-	maxSpeed = 5
+	maxSpeed = 7
 	maxForce = 20
 
 	def __init__(self, x, y, vx, vy, screenWidth, screenHeight, color):
@@ -46,15 +46,23 @@ class Boid():
 
 		self.color = color
 
-		self.sight = 100
+		self.lifeSpan = 60
+
+		self.sight = 50
 
 		self.separationForce = [0,0]
 		self.alignmentForce = [0,0]
 		self.cohesionForce = [0,0]
 
-		self.separationWeight = .3 #between .2 - 1
-		self.cohesionWeight = 1 #between 0 and .5
-		self.alignmentWeight = .5 #between 0 and 1
+		self.separationWeight = random.random() * 1 + 0.5 #between .2 - 1
+		self.cohesionWeight = random.random() #between 0 and .5
+		self.alignmentWeight = random.random() #between 0 and 1
+
+		self.red = self.separationWeight * 255 / 2
+		self.green = self.cohesionWeight * 255 / 2
+		self.blue = self.alignmentWeight * 255
+
+		self.color = (self.red, self.green, self.blue)
 
 		self.mass = 5
 		
@@ -109,9 +117,11 @@ class Boid():
 		self.ay = 0
 		self.forces = []
 		
+
+		self.lifeSpan -= 0.01
+
 		
 		
-	
 
 		numBoidsICanSee = 0
 
